@@ -1,0 +1,70 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #333;
+}
+
+.scene {
+  perspective: 1000px;
+}
+
+.piramide{
+  width: 10cm;
+  height: 0;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-30deg) rotateY(45deg);
+  animation: 5s infinite linear;
+}
+
+.lados {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 5cm solid transparent;
+  border-right: 5cm solid transparent;
+  border-bottom: 8.66cm solid lime;
+  filter: drop-shadow(2px 4px 6px black);
+  mask-position: 50% 98%;
+  mask-repeat: no-repeat;
+  mask-size: 55%;
+}
+
+.lado1 {
+  transform: rotateX(19.3deg) translateZ(108.4px) translateY(20.5px);
+  border-bottom: 8.66cm solid red;
+  mask-image: url("./olhoAnubis.png");
+}
+
+.lado2 {
+  transform: rotateY(120deg) rotateX(19.3deg) translateZ(30.3px) translateY(-6.3px) translateX(-46px);
+  border-bottom: 8.66cm solid yellow;
+
+}
+
+.lado3 {
+  transform: rotateY(240deg) rotateX(19.3deg) translateZ(31.15px) translateY(-5.7px) translateX(48px);
+  border-bottom: 8.66cm solid limegreen;
+
+}
+
+.lado4 {
+  transform: rotateX(90deg) translateZ(-3.67cm);
+  /* Opcional, base da pirâmide */
+  border-bottom: 8.66cm solid blue;
+
+}
+
+@keyframes girar {
+  0% {
+    transform: rotateX(-30deg) rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateX(-30deg) rotateY(360deg);
+  }
+}
