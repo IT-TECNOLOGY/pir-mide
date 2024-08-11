@@ -36,9 +36,23 @@
       position: relative;
       transform-style: preserve-3d;
       transform: rotateX(-30deg) rotateY(45deg);
-      animation: girar 8s infinite linear;
-      transition: 2s;
+      animation: girar 15s infinite linear;
+      transition: 1s;
+      cursor: pointer;
+    }
 
+    @keyframes girar {
+      0% {
+        transform: rotateX(-30deg) rotateY(0deg) translateY(1cm);
+      }
+
+      50% {
+        transform: rotateX(-30deg) rotateY(180deg) translateY(-3cm);
+      }
+
+      100% {
+        transform: rotateX(-30deg) rotateY(360deg) translateY(1cm);
+      }
     }
 
     .piramide2 {
@@ -49,7 +63,7 @@
       transform-style: preserve-3d;
       width: 10cm;
       height: 10cm;
-          transform: translate3d(-31px, 2cm, 123px);
+      transform: translate3d(-31px, 2cm, 123px);
     }
 
     .topo {
@@ -57,7 +71,7 @@
       width: 4cm;
       height: 4cm;
       transform: translate3d(99px, -293px, 49px);
-      transition: 2s;
+      transition: 1s;
     }
 
     .lados {
@@ -65,7 +79,7 @@
       width: 10cm;
       height: 20cm;
       filter: drop-shadow(2px 4px 6px black);
-      transition: 2s;
+      transition: 1s;
     }
 
     .topos {
@@ -128,20 +142,6 @@
       height: 9.3cm;
       transform: translate3d(25px, 524px, -119px);
       transform-style: preserve-3d;
-    }
-
-    @keyframes girar {
-      0% {
-        transform: rotateX(-30deg) rotateY(0deg) translateY(1cm);
-      }
-
-      50% {
-        transform: rotateX(-30deg) rotateY(180deg) translateY(-1cm);
-      }
-
-      100% {
-        transform: rotateX(-30deg) rotateY(360deg) translateY(1cm);
-      }
     }
 
     @keyframes girarOlho {
@@ -222,41 +222,43 @@
       }
     }
 
-    .base{
+    .base {
       transform-style: preserve-3d;
-      animation: girarOposto 8s infinite linear;
+      animation: girarOposto 15s infinite linear;
     }
 
-    .bases{
+    .bases {
       position: absolute;
     }
 
-    .bases img{
+    .bases img {
       width: 435px;
     }
 
-    .base1{
+    .base1 {
       transform: rotateX(90deg) translate3d(-34.67px, -59px, 85px);
       animation: piscar 3s infinite linear;
     }
-    
-    .base2{
+
+    .base2 {
       transform: rotateX(90deg) translate3d(-34.67px, -59px, 81px);
     }
 
-    .base3{
+    .base3 {
       transform: translate3d(-105px, -42px, 149px) rotateX(20deg);
     }
 
-    .base4{
+    .base4 {
       transform: translate3d(0px, -36px, -61px) rotateX(0deg) rotateY(-240deg);
     }
 
-    .base5{
+    .base5 {
       transform: translate3d(-220px, -35px, -48px) rotateX(0deg) rotateY(240deg);
     }
 
-    .base3 img, .base4 img, .base5 img{
+    .base3 img,
+    .base4 img,
+    .base5 img {
       width: 578px !important;
     }
 
@@ -268,6 +270,7 @@
       50% {
         filter: drop-shadow(0px 0px 20px white);
       }
+
       100% {
         filter: drop-shadow(0px 0px 0px white);
       }
@@ -279,7 +282,7 @@
       }
 
       50% {
-        transform: rotateX(0deg) rotateY(-180deg) translateY(1cm);
+        transform: rotateX(0deg) rotateY(-180deg) translateY(3cm);
       }
 
       100% {
@@ -289,13 +292,13 @@
 
 
 
-    button{
-    padding: 3%;
-    border: none;
-    background: gray;
-    border-radius: 20px;
-    font-size: larger;
-    cursor: pointer;
+    button {
+      padding: 3%;
+      border: none;
+      background: gray;
+      border-radius: 20px;
+      font-size: larger;
+      cursor: pointer;
     }
   </style>
   <section style="
@@ -318,6 +321,12 @@
       </button>
       <button id="fechar" style="display: none;">
         Fechar piramide
+      </button>
+      <button class="up">
+        +
+      </button>
+      <button class="down">
+        -
       </button>
     </div>
 
@@ -378,9 +387,9 @@
             <img src="./basebase.png">
           </div>
         </div>
-        
+
       </div>
-      
+
 
     </div>
   </section>
@@ -392,6 +401,21 @@
       let rotationX = -30;
       let rotationY = 45;
 
+      // Função para capturar as coordenadas do mouse ou do toque
+      function getEventCoordinates(e) {
+        if (e.type.startsWith('touch')) {
+          return {
+            x: e.touches[0].clientX,
+            y: e.touches[0].clientY
+          };
+        } else {
+          return {
+            x: e.clientX,
+            y: e.clientY
+          };
+        }
+      }
+
       $('#mover').click(function () {
         $('.piramide, .piramide2').css('animation', 'none');
         $('.base').css('animation', 'none');
@@ -400,8 +424,8 @@
       });
 
       $('#girar').click(function () {
-        $('.piramide, .piramide2').css('animation', 'girar 8s infinite linear');
-        $('.base').css('animation', 'girarOposto 8s infinite linear');
+        $('.piramide, .piramide2').css('animation', 'girar 15s infinite linear');
+        $('.base').css('animation', 'girarOposto 15s infinite linear');
         $('#mover').show();
         $('#girar').hide();
       });
@@ -410,49 +434,62 @@
         $('.lado1').css('transform', 'rotateX(-90deg) translateZ(135.6px) translateY(-5.5px)');
         $('.lado2').css('transform', 'rotateY(120deg) rotateX(-90deg) translateZ(138.3px) translateY(-215.7px) translateX(65px)');
         $('.lado3').css('transform', 'rotateY(240deg) rotateX(-90deg) translateZ(138.15px) translateY(-165.3px) translateX(-153px)');
-        $('.topo').css('transform', 'translate3d(99px, -611px, 50px)');
-        
+        $('.topo').css('transform', 'translate3d(99px, -411px, 50px)');
+
         $(this).hide();
         $('#fechar').show();
       });
 
-      $('#fechar').click(function(){
+      $('#fechar').click(function () {
         $('.lado1').css('transform', 'rotateX(19.3deg) translateZ(-46.6px) translateY(133.5px)');
         $('.lado2').css('transform', 'rotateY(120deg) rotateX(19.5deg) translateZ(157.3px) translateY(203.7px) translateX(65px)');
         $('.lado3').css('transform', 'rotateY(240deg) rotateX(19.3deg) translateZ(104.15px) translateY(186.3px) translateX(-154px)');
-        $('.topo').css('transform', 'translate3d(99px, -512px, 50px)');
+        $('.topo').css('transform', 'translate3d(99px, -293px, 49px)');
         $(this).hide();
         $('#abrir').show();
       });
 
-      $('body').mousedown(function (e) {
-        isDragging = true;
-        previousX = e.clientX;
-        previousY = e.clientY;
+      var tamanho = 1; // Valor inicial da escala
+
+      $('.up').click(function () {
+        tamanho += 0.1; // Incrementa a escala
+        $('.scene').css('transform', 'scale(' + tamanho + ')');
       });
 
-      $(document).mousemove(function (e) {
-        if (isDragging) {
-          let deltaX = e.clientX - previousX;
-          let deltaY = e.clientY - previousY;
+      $('.down').click(function () {
+        tamanho -= 0.1; // Decrementa a escala
+        if (tamanho < 0.1) tamanho = 0.1; // Evita que o tamanho fique muito pequeno ou negativo
+        $('.scene').css('transform', 'scale(' + tamanho + ')');
+      });
 
-          rotationX -= deltaY * 0.1; // Ajusta a sensibilidade do eixo X
-          rotationY += deltaX * 0.1; // Ajusta a sensibilidade do eixo Y
+      $('body').on('mousedown touchstart', function (e) {
+        isDragging = true;
+        let coords = getEventCoordinates(e);
+        previousX = coords.x;
+        previousY = coords.y;
+      });
+
+      $(document).on('mousemove touchmove', function (e) {
+        if (isDragging) {
+          let coords = getEventCoordinates(e);
+          let deltaX = coords.x - previousX;
+          let deltaY = coords.y - previousY;
+
+          rotationX -= deltaY * 0.3; // Ajusta a sensibilidade do eixo X
+          rotationY += deltaX * 0.3; // Ajusta a sensibilidade do eixo Y
 
           $('.piramide, .asa').css('transform', `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`);
 
-          previousX = e.clientX;
-          previousY = e.clientY;
+          previousX = coords.x;
+          previousY = coords.y;
         }
       });
 
-      $(document).mouseup(function () {
+      $(document).on('mouseup touchend', function () {
         isDragging = false;
       });
-
-
-
     });
+
   </script>
 
 </body>
