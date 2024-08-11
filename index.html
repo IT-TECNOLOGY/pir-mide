@@ -56,9 +56,8 @@
       transform-style: preserve-3d;
       width: 4cm;
       height: 4cm;
-      transform: translate3d(99px, -512px, 50px);
+      transform: translate3d(99px, -446px, 49px);
       transition: 2s;
-
     }
 
     .lados {
@@ -276,15 +275,15 @@
 
     @keyframes girarOposto {
       0% {
-        transform: rotateX(0deg) rotateY(0deg) translateY(0cm);
+        transform: rotateX(0deg) rotateY(0deg) translateY(-1cm);
       }
 
       50% {
-        transform: rotateX(0deg) rotateY(-180deg) translateY(3cm);
+        transform: rotateX(0deg) rotateY(-180deg) translateY(1cm);
       }
 
       100% {
-        transform: rotateX(0deg) rotateY(-360deg) translateY(0cm);
+        transform: rotateX(0deg) rotateY(-360deg) translateY(-1cm);
       }
     }
 
@@ -323,8 +322,8 @@
     </div>
 
     <div class="scene">
-      <div class="piramide">
-        <div class="piramide1" data-tilt>
+      <div class="piramide" data-tilt>
+        <div class="piramide1">
           <div class="lados lado1">
             <img src="./piramideCentro.png" style="position: absolute;" alt="">
           </div>
@@ -350,7 +349,7 @@
           </div>
         </div>
 
-        <div class="topo" data-tilt>
+        <div class="topo">
           <div class="topos ladoTopo1">
             <img src="./topoOuro.png">
           </div>
