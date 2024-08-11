@@ -37,6 +37,8 @@
       transform-style: preserve-3d;
       transform: rotateX(-30deg) rotateY(45deg);
       animation: girar 8s infinite linear;
+      transition: 2s;
+
     }
 
     .piramide2 {
@@ -47,7 +49,7 @@
       transform-style: preserve-3d;
       width: 10cm;
       height: 10cm;
-      transform: translate3d(-31px, -141px, 123px);
+      transform: translate3d(-31px, -2cm, 123px);
     }
 
     .topo {
@@ -131,15 +133,15 @@
 
     @keyframes girar {
       0% {
-        transform: rotateX(-30deg) rotateY(0deg) translateY(0cm);
+        transform: rotateX(-30deg) rotateY(0deg) translateY(1cm);
       }
 
       50% {
-        transform: rotateX(-30deg) rotateY(180deg) translateY(-3cm);
+        transform: rotateX(-30deg) rotateY(180deg) translateY(-1cm);
       }
 
       100% {
-        transform: rotateX(-30deg) rotateY(360deg) translateY(0cm);
+        transform: rotateX(-30deg) rotateY(360deg) translateY(1cm);
       }
     }
 
